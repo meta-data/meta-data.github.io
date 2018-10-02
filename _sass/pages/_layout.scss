@@ -1,15 +1,14 @@
 /* LAYOUT CSS */
 .cover {
-  background-color: $background-color;
+  background-color: $yellow;
   position: fixed;
-  text-align: center;
   width: 100%;
-  min-height: 400px;
-  padding: 30px 15px 20px;
-  z-index: 1;
+  padding: 1rem;
+  z-index: 300;
+  text-align: center;
   @include media-query($small-screen) {
     background-position: center;
-    padding: 30px;
+    padding: 1rem;
   }
   @include media-query($medium-screen) {
     height: 100vh;
@@ -19,82 +18,145 @@
 }
 .cover-card {
   color: $text-color;
-  padding: 0 30px;
+  margin: 0;
+  @include media-query($medium-screen) {
+    margin-left: 0;
+    padding: 0 30px;
+  }
   .avatar {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    float: none;
+    max-width: 8rem;
+    @media only screen and (max-width: $medium-screen) {
+      padding: 0 0.5rem;
+      float:left;
+    }
     @include media-query($medium-screen) {
-      margin-right: 0;
+      margin-left: 0;
     }
   }
-  .author_name {
+
+  .author_bio {
     display: block;
-    color: #F36170;
-    font-size: 1.75em;
-    text-transform: lowercase;
-  }
-  .author_job {
-    display: block;
-    color: $secondary;
+    color: $text-color;
     font-size: 0.8em;
     font-weight: 700;
     text-transform: uppercase;
-    margin: -5px auto 10px;
+    margin: 0px auto 10px 0;
+    text-align: left;
+    @media only screen and (max-width: $medium-screen) {
+      display: none;
+    }
   }
-  .author_bio {
+  .author_desc {
     font-size: 90%;
     display: block;
   }
   @include media-query($medium-screen) {
-    text-align: right;
     margin: 0 auto;
     padding: 0 0px 80px;
   }
 }
 .social-links {
+  position: absolute;
+  bottom: 6%;
   margin-top: 0.5em;
+  text-align: left;
+  font-size: 1em;
   ul {
     margin: 0;
     padding: 0;
     li {
       list-style: none;
       display: inline-block;
-      margin-left: 1em;
       a.social-link-item {
-        color: $secondary;
+        color: $text-color;
         &:hover,
         &:focus {
-          color: lighten($secondary, 14%);
+          color: lighten($text-color, 20%);
         }
       }
     }
+  }
+}
+
+.toggle {
+  display: block;
+  float:right;
+  @include media-query($medium-screen) {
+    display:none;
+  }
+}
+.nav {
+  a {
+    color:$text-color;
   }
 }
 .nav-list {
   margin: 0;
   padding: 0;
   list-style: none;
+  text-align: left;
+  @media only screen and (max-width: $medium-screen) {
+    display: none;
+  }
   .nav-item {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    &:after {
-      content: '/';
-    }
-    &:last-child:after {
-      content: '';
-    }
     & a {
-      margin-top: 1em;
-      text-transform: lowercase;
-      font-size: 85%;
-      color: $secondary;
+      display: inline-block;
+      white-space: nowrap;
+      padding-top: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1.4rem;
+      color: rgb(51, 51, 51);
+      text-decoration: none;
+      transition: 0.3s;
+      border-bottom: 2px solid transparent;
+      font-size: 1.2rem;
       &:hover,
       &:focus {
-        color: lighten($secondary, 14%);
+        border-bottom: 2px solid rgb(51, 51, 51);
       }
     }
+    .active {
+      border-bottom: 2px solid rgb(51, 51, 51);
+    }
   }
+}
+
+.team {
+  @include media-query($medium-screen) {
+    height: 30%
+  }
+}
+
+@media only screen and (max-width: $medium-screen) {
+  .menu-page {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 300;
+    top: 0;
+    left: 0;
+    background-color: $yellow;
+    overflow-x: hidden;
+    transition: 0.3s;
+    #pull {
+      display:none;
+    }
+    .close-btn {
+      display: unset;
+      position: absolute;
+      top: -0.5rem;
+      right: 0.8rem;
+      font-size: 3rem;
+    }
+    .nav-list {
+      display: block;
+      margin-top: 8rem;
+      text-align: center;
+      padding: 0 1.4rem;
+    }
+  }
+}
+.close-btn {
+  display: none;
 }

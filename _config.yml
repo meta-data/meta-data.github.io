@@ -3,18 +3,18 @@
 # Site wide configuration
 ####################################
 #
-title: Leonids
-email:
-description: A simple and awesome blog theme powered by jekyll.
-url: # the base hostname & protocol for your site
-keywords: ["blog", "jekyll"]
+title: MetaData
+email: dataitgirls.metadata@gmail.com
+description: We make data changing the world
+url: https://meta-data.github.io/
+keywords: ["blog", "jekyll", "Data", "analysis"]
 
 #
 ###################################
 # Jekyll configuration
 ####################################
 #
-timezone:          Europe/Paris
+timezone:          Asia/Seoul
 markdown:          kramdown
 highlighter:       rouge
 excerpt_separator: <!--more-->
@@ -33,39 +33,23 @@ kramdown:
 ####################################
 #
 owner:
-  name: Leonids
-  avatar: leonids-logo.png
-  job: "A jekyll theme"
-  bio: "A simple and awesome blog theme powered by jekyll."
-  email:
-  disqus-shortname:
+  name: MetaData
+  avatar: logo.png
+  bio: "데잇걸즈 2기"
+  desc: "현장에서 써먹지 못하는 지식은 💩된다"
+  email: "dataitgirls.metadata@gmail.com"
   twitter: #username
   facebook: #username
   google:
     plus: #username
-    analytics:
+    analytics: "UA-125813740-1"
     verify:
     ad-client:
     ad-slot:
   bing-verify:
-  github: #username
-  gitlab: #username
-  stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
+  github: "https://github.com/meta-data"
   linkedin: #username
-  skype: #username
-  xing: #username
   instagram: #username
-  lastfm: #username
-  tumblr: #username
   pinterest: #username
-  foursquare: #username
-  steam: #username
-  dribbble: #username
-  youtube: #username
-  soundcloud: #username
-  weibo: #username
-  flickr: #username
-  500px: #username
-  codepen: #username
   reddit: #username
   telegram: #username

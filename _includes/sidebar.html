@@ -1,25 +1,46 @@
-{% if page.author %} {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %} {% endif %}
+{% assign author = site.owner %}
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    var pull = document.getElementById('pull');
+    var nav = document.querySelector('nav');
 
-<div class="cover-card table-cell table-middle">
-  {% if author.avatar %}
-  <a href="{{ site.url }}/">
-    <img src="{{ site.url }}/img/{{ author.avatar }}" alt="" class="avatar">
-  </a>
-  {% endif %}
-  <a href="{{ site.url }}/" class="author_name">{{ author.name }}</a>
-  <span class="author_job">{{ author.job }}</span>
-  <span class="author_bio mbm">{{ author.bio }}</span>
+    pull.addEventListener('click', function(e) {
+      nav.classList.toggle('menu-page');
+    });
+  });
+  function closeNav(){
+    var nav = document.querySelector('nav');
+    nav.classList.toggle('menu-page');
+  };
+</script>
+
+<div class="cover-card table-cell table-top">
+  <div class="team">
+    <a href="{{ site.url }}/">
+      <img src="{{ site.url }}/img/{{ author.avatar }}" alt="" class="avatar">
+    </a>
+    <span class="author_bio">{{ author.bio }}</span>
+  </div>
   <nav class="nav">
+    <a id="pull" class="toggle">
+      <i class="fa fa-bars fa-lg"></i>
+    </a>
+    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">
+      &times;
+    </a>
     <ul class="nav-list">
       <li class="nav-item">
-        <a href="{{ site.url }}/">home</a>
+        <a href="{{ site.url }}/">Hello</a>
       </li>
-      {% for page in site.pages %} {% if page.title %}
       <li class="nav-item">
-        <a href="{{ site.url }}{{ page.url }}">{{ page.title }}</a>
+        <a href="{{ site.url }}/timeline/">Timeline</a>
       </li>
-      {% endif %} {% endfor %}
+      <li class="nav-item">
+        <a href="{{ site.url }}/project/">Project</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ site.url }}/team/">Team</a>
+      </li>
     </ul>
   </nav>
-  {% include social-links.html %}
 </div>
