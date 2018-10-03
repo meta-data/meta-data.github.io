@@ -2,15 +2,13 @@
 .post-listing {
   background-color: $white;
   width: 100%;
-  padding: 10rem 20px 0;
-  -webkit-transform: translate3d(0,0,1px);
-  transform: translate3d(0,0,1px);
-
+  padding: 10rem 2rem 0;
   @include media-query($medium-screen) {
     height: 100vh;
     overflow-y: scroll;
     position: initial;
     top: 0;
+    padding: 10rem 4rem 0;
   }
 }
 

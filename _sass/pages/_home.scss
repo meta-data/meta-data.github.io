@@ -1,0 +1,40 @@
+p {
+  margin:0;
+}
+.text-range {
+  display: block;
+  width: 100%;
+  margin-bottom: 5rem;
+  @include media-query($small-screen) {
+    width: 80%;
+  }
+  @include media-query($medium-screen) {
+    width: 60%;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0 1rem 0;
+  width: 90%;
+  .box {
+    width: 100%;
+    margin: 0 2rem 4rem 0;
+    @include media-query($small-screen) {
+      width: 40%;
+    }
+    @include media-query($medium-screen) {
+      width: 34%;
+    }
+  }
+  h2 {
+    line-height: 2rem;
+    font-size: 1.4rem;
+  }
+}
+.em {
+  font-size: 1.6rem !important;
+}
