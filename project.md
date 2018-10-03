@@ -4,487 +4,66 @@ title:  GA를 이용한 서비스 콘텐츠와 유저 분석
 permalink: /project/
 ---
 
-```python
-import pandas as pd
-import numpy as np
+**유저 유입 및 행동 분석** 
 
-df = pd.read_csv('data.csv')
-df.shape
-```
+1. 왜 유저 분석을 시작하게 되었는가?
+   다른 팀원 분들은 컨텐츠를 클릭하는 요소 (키워드, 제목길이, 카테고리 등등)을 분석하기로 했는데, 데이터셋이 작아서 4명이 하기에는 충분해서, 나는 다른 부분을 분석해보고 싶었다. 
+   그리하여 나는 컨텐츠를 클릭하는 유저들이 어디서 유입되었고, 그들이 전반적으로 웹사이트에서는 어떤 행동을 하는지 보기로 했다. 컨텐츠 분석이 '유저들은 어떤 컨텐츠를 좋아하는가?'라는 질문을 답하는 부분이였다면, 유저 분석은 '컨텐츠를 좋아하는 유저들은 누구인가?'라는 질문에 답이라고 할 수 있겠다.
+   컨텐츠 분석에 비해서는 조금 더 메타적인 분석이였지만, 활용할 수 있는 데이터셋의 크기가 적절했다는 장점이 있었다. (GA에 기록된 유저 데이터는 25,000개 정도)
+   
+   
+2. 이용한 데이터셋
+   Raw Dataset은 Google Analytics에서 여러가지 필터를 적용해서 만들어낸 Custom Report를 이용했다. 여기에서 이용된 필터는 Source/Medium, Landing Page, Exit Page, Page Depth, Avg. Session Duration 등이었다. 나중에 데이터가 자동으로 업데이트가 되지 않은 문제를 발견하여 Google Sheet에 Google Analytics을 연결해서 자동화를 해주었다.
+   
+   이 외에, 유저들의 웹사이트 내에서의 행동을 시각화해서 보여주는 Behavior Flow, 개별 유저들의 행동을 보여주는 User Explorer를 이용했다. 이 도구들은 한번에 유저들의 행동을 보기에는 유용했지만, 상세한 분석을 위해서 데이터셋을 뽑아낼 수 없는 단점이 있었다. 
+   
+   
+3. 분석_1
 
+![png](/img/user_tree.png)
+![png](/img/user_histogram.png)
 
 
+Tree 형식으로, 유저들의 유입을 세분화시켜보았다. 처음에는 새로운 유저와 기존 유저를 구분했고 (기존 유저는 direct traffic으로 잡힐거라는 가정이 들어갔다), 다음에는 landing page별로 유저를 나누었고, 페이지 별 유저들이 한 행동 (이탈률, 페이지에 머문 시간, 본 페이지 수)를 분석했고, 이를 토대로 Heavy User를 나누었다. Heavy User는 평균을 넘어선 outlier에 더 가까웠으며, 히스토그램을 그려보니, 확실히 그림이 나왔다. (생각해보니 boxplot이 더 나았을 것 같기도 하다)
 
-    (101, 27)
+하지만 이 Tree를 그리고도 내가 제대로 무엇을 분석하는지 혼란스럽기는 했다. 구체적으로 가설을 세우고 입장하는 단계가 아닌 '무엇이 있는지 알아보자'라는 탐색 단계였기에 그랬던 것 같다. 이 결과를 토대로 중간 보고를 했는데 대표님은 헤비 유저에 대해서 더 관심을 보이시는 것 같았다. 그래서 헤비 유저를 분석하는 것을 다음 목표로 하기로 했다.
 
+4. 분석_2
 
+하지만 이 데이터셋에는 한계가 있었으니, landing page와 exit page는 있지만, 그 사이에 클릭한 링크나 웹사이트에 대한 정보는 없었다는 점이다. 유저가 처음에는 콘텐츠 홈페이지로 유입되었어도, 컨텐츠가 아닌 다른 페이지로 갈 수도 있는 일이다. 처음과 끝은 있지만, 그 중간 프로세스를 볼 수 없으니, 분석을 정확하게 보는 것이 아니라 어림짐작한다는 느낌이 들었다. 
 
+그리하여 User Explorer를 이용해서 유저들의 행동들을 보다 더 상세하게 분석해보기로 했다. 하지만, 분석해야 할 유저가 25,000명이 넘었고, 한꺼번에 유저들의 데이터를 다운로드 받을 방법이 없었다. (Selenium를 이용해서 크롤링하는 방법이 있었지만, 시도하지는 않았다.) 애란쌤에게 조언을 구했고, 우선 몇 명을 골라서 분석을 해본후 유의미한 결과가 있는지 확인해보라고 했다. 
 
-```python
-df = df.dropna(subset = ['answer_text_length'])
-```
+그리고 헤비 유저를 단순히 페이지에 오랜 머문 사람들로 생각했었는데, 설정한 목표를 이룬 유저들도 헤비 유저에 넣을 수 있겠다는 생각을 하게 되었다. 생각해보니 내가 헤비 유저를 너무 단순하게 정의한 것 같았다. 그래서 이 팀원들과 같이 상의를 해보았고, 그 결과 우선은 페이지에 오래 머문 사람들로 정의하기로 했다. 
 
-### 어떤 카테고리의 콘텐츠가 가장 많을까?
+팀원들과 같이 40명의 유저들을 샘플링하여 (20명 헤비유저, 20명 일반유저) 행동에 패턴이 있는지 분석해보았고, '일정' 있는 것으로 판명되었다. 하지만 25000명 중에 40명은 상당히 적은 데이터이고 (1%도 안됨) 제대로 랜덤화가 되었는지도 알 수 없었고, 행동에 패턴이 있는 것을 보고 어떤 결과물을 내놓을 수 있으며, 그 것이 우리의 분석 목적에는 어떻게 맞는지, 혼란스러웠다. 
 
+5. 분석_3
 
-```python
-import matplotlib.pyplot as plt
+최종 분석 리포트 제출을 하루 앞두고, 데이터를 살펴보다가 이상하다는 생각이 들었다. 전에 나온 결과로는 평균 5분에서 8분쯤 유저들이 페이지에 머무는 것으로 나왔는데, 유저 데이터를 보았을때는 5, 8분이라면 이미 헤비 유저였던 것으로 느껴졌던 것이다. 
 
-plt.figure(figsize=(8,8))
-category_count = df['category'].value_counts()
-category_count.plot(kind='pie')
-```
-- 영업/영업관리, 전문/특수, 회계/재무/금융, 마케팅/MD 카테고리의 글이 가장 많다.
-  - 영업/영업관리: 94개 중 10개, 10.64%
-  - 전문/특수: 94개 중 9개, 9.57%
-  - 회계/재무/금융: 94개 중 9개, 9.57%
-  - 마케팅/MD: 94개 중 9개, 9.57%
-- 건축, 미디어 카테고리는 콘텐츠가 하나도 없다.
+데이터를 뜯어보니, 큰 실수를 했다. 데이터셋을 계산할때 가중치를 고려하지 않았던 것이다. 1000개의 데이터여도, 각 데이터에는 가중치 (여기서는 Session)이 있어서 실제로 계산하는 데이터의 수는 1000개가 아니라 더 많은 데이터였던 것이다. 그래서 데이터가 제대로 나오지 않았다.
 
-###  페이지뷰가 가장 높은 카테고리는 무엇일까?
+그리고 가중치 이외에도 데이터셋에 이것저것 적용했던 필터를 일부 바꾸었다. 계산 결과, 헤비유저에 대한 정의는 크게 바꾸지 않아도 되었지만, 평균 유저에 대해서는 바꾸어야 했다. (페이지에 머무는 시간 5분 --> 1분 30초)
 
+![png](/img/user_landing_page.png)
+![png](/img/user_boxplot.png)
 
-```python
-plt.figure(figsize=(10,4))
-category_pvs = df.groupby(['category']).unique_pageviews.mean()
-category_pvs.sort_values(ascending = False).plot.bar()
-```
 
-![png](/img/2018-10-02-category_6_1.png)
+6. 분석 보고 및 제안
+   - 유저들의 유입 분석 - 대부분 구글, 네이버에서 키워드 검색을 통해서 유입한다. 키워드는 '생산관리', '변리사' 등 구체적이고, 다른 웹사이트에서 잘 다루지 않는 내용이 많았다. 헤비 유저는 컨텐츠를 보기보다는 멘토나 멘티로서 답변을 하거나 체크하려는 용도로 접속하는 경우가 많았다. 
+   - 유저들의 행동 분석 - 컨텐츠 홈으로 유입이 되었지만, 검색 기능이 없어서 다른 페이지로 넘어가는 경우가 포착되었다. 유저들은 자신이 관심있어 하는 컨텐츠만 읽는 경향이 있었다. 
+   - 제안(마케팅) - 아직 컨텐츠는 마케팅을 제대로 하지 않은 상태이다. 예산, 시간, 목표를 고려해서 본격적으로 마케팅을 하는 것을 추천한다. 아래는 해볼 수 있는 마케팅들이다. 
+     - 1) SEO - 현재는 검색 엔진에서 유입되는 트래픽이 제일 많은 편이고, 광고처럼 돈이 들지 않기 때문에 해볼만하다 (SEO에 대해서 전문적인 서비스를 받는다면 비용이 나가겠지만) 키워드 분석을 해서 경쟁이 낮은 분야부터 시작하고, 경쟁이 높은 분야는 전략을 좀 더 세워야 한다. (linkbuilding, SEO audit) 구글과 네이버의 생태계가 다르므로, 이 점에 대해서도 다르게 전략을 세울 필요가 있다. 
+     - 2) 소셜 미디어 - 페이스북, 브런치 등에 글을 공유한다. 페이스북에서는 광고를 해볼 수도 있겠다.
+    - 제안(기타) - UX 디자인 측면에서, 컨텐츠 홈에 검색 기능을 다는 것을 추천한다. 
+     
 
+7. 느낀 점
 
-### 세션이 가장 많았던 카테고리는 무엇일까?
-
-
-```python
-plt.figure(figsize=(10,4))
-category_ss = df.groupby(['category']).sessions.mean()
-category_ss.sort_values(ascending = False).plot.bar()
-```
-![png](/img/2018-10-02-category_8_1.png)
-
-- 생산/제조, 공무원/공공/비영리, IT개발, 전문/특수, 연구/설계는 순위가 동일하다.
-  - 유저들이 가장 관심있어하는 카테고리라 유추할 수 있다.
-- pageviews 순위 > sessions 순위 : 세션에 비해 페이지뷰가 높았다. 
-  - 마케팅/MD(9)
-  - 인사/총무/노무(7)
-  - 유통/무역/구매(7)
-  - 디자인/예술(3)
-  - 해외/기술영업(2)
-  - 홍보/CSR(3)
-  - 전략/기획(1)
-- pageviews 순위 < sessions 순위 : 세션이 많았으나 페이지뷰가 그만큼 높지 않았다.
-  - 영업/영업관리(10)
-  - 회계/재무/금융(9)
-  - 기타 사무(6)
-  - 서비스(8)
-  - 서비스 기획/UI,UX등(5)
-  - 교육/상담/컨설팅(2)
-
-
-### 이탈률이 가장 높은 카테고리는 무엇일까?
-
-
-```python
-plt.figure(figsize=(10,4))
-category_bnc = df.groupby(['category']).bounce_rate.mean()
-category_bnc.sort_values(ascending = False).plot.bar()
-```
-
-![png](/img/2018-10-02-category_11_1.png)
-
-
-### 분석1. 카테고리 콘텐츠 갯수와 페이지뷰, 이탈률, 세션
-**가설**
-1. 카테고리 내 콘텐츠 갯수가 많을수록 페이지뷰 수가 높을 것이다.
-2. 카테고리 내 콘텐츠 갯수가 많을수록 이탈률은 낮을 것이다.
-3. 카테고리 내 콘텐츠 갯수가 많을수록 세션은 높을 것이다.
-
-
-```python
-category_df = pd.DataFrame({'name': df.category})
-category_df.set_index('name', inplace=True)
-category_df['count'] = category_count
-category_df['avg_pageviews'] = category_pvs
-category_df = category_df[~category_df.index.duplicated(keep='first')]
-category_df.head(20)
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>count</th>
-      <th>avg_pageviews</th>
-    </tr>
-    <tr>
-      <th>name</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>전문/특수</th>
-      <td>9</td>
-      <td>243.222222</td>
-    </tr>
-    <tr>
-      <th>마케팅/MD</th>
-      <td>9</td>
-      <td>197.333333</td>
-    </tr>
-    <tr>
-      <th>회계/재무/금융</th>
-      <td>9</td>
-      <td>120.888889</td>
-    </tr>
-    <tr>
-      <th>연구/설계</th>
-      <td>4</td>
-      <td>204.000000</td>
-    </tr>
-    <tr>
-      <th>인사/총무/노무</th>
-      <td>7</td>
-      <td>160.142857</td>
-    </tr>
-    <tr>
-      <th>기타 사무</th>
-      <td>6</td>
-      <td>76.833333</td>
-    </tr>
-    <tr>
-      <th>영업/영업관리</th>
-      <td>10</td>
-      <td>179.100000</td>
-    </tr>
-    <tr>
-      <th>서비스</th>
-      <td>8</td>
-      <td>65.250000</td>
-    </tr>
-    <tr>
-      <th>유통/무역/구매</th>
-      <td>7</td>
-      <td>107.714286</td>
-    </tr>
-    <tr>
-      <th>IT개발</th>
-      <td>1</td>
-      <td>296.000000</td>
-    </tr>
-    <tr>
-      <th>생산/제조</th>
-      <td>5</td>
-      <td>492.200000</td>
-    </tr>
-    <tr>
-      <th>해외/기술영업</th>
-      <td>2</td>
-      <td>84.500000</td>
-    </tr>
-    <tr>
-      <th>공무원/공공/비영리</th>
-      <td>3</td>
-      <td>325.000000</td>
-    </tr>
-    <tr>
-      <th>홍보/CSR</th>
-      <td>3</td>
-      <td>71.666667</td>
-    </tr>
-    <tr>
-      <th>전략/기획</th>
-      <td>1</td>
-      <td>49.000000</td>
-    </tr>
-    <tr>
-      <th>서비스 기획/UI, UX등</th>
-      <td>5</td>
-      <td>49.200000</td>
-    </tr>
-    <tr>
-      <th>교육/상담/컨설팅</th>
-      <td>2</td>
-      <td>47.000000</td>
-    </tr>
-    <tr>
-      <th>디자인/예술</th>
-      <td>3</td>
-      <td>96.333333</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-from scipy.stats import linregress
-
-def get_linear_regression(x, y):
-    gradient, intercept, r_value, p_value, std_err = linregress(x,y)
-    mn=np.min(x)
-    mx=np.max(x)
-    x1=np.linspace(mn,mx,500)
-    y1=gradient*x1+intercept
-    plt.plot(x,y,'ob')
-    plt.plot(x1,y1,'-r')
-    plt.show()
-```
-
-
-```python
-import statsmodels.regression.linear_model as lm
-import statsmodels.graphics.regressionplots as rp
-
-def draw_outliers(x, y):
-    model = lm.OLS(x, y)
-    result = model.fit()
-#     fig, ax = plt.subplots(figsize=(8,6))
-#     fig = rp.influence_plot(result, ax=ax, criterion="cooks")
-    influence = result.get_influence()
-    #c is the distance and p is p-value
-    (c, p) = influence.cooks_distance
-    plt.stem(np.arange(len(c)), c, markerfmt=",")
-```
-
-#### 1) 콘텐츠 갯수와 평균 페이지뷰
-
-
-```python
-get_linear_regression(category_df['count'], category_df['avg_pageviews'])
-```
-
-
-![png](/img/2018-10-02-category_17_0.png)
-
-
-생산/제조, 공무원/공공/비영리, IT개발 카테고리가 회귀선과 거리가 가장 먼 카테고리들이다. 이 중 생산/제조(5, 554)를 제거하고 다시 그려보자
-
-
-```python
-non_outlier_df = category_df.drop(['생산/제조'])
-get_linear_regression(non_outlier_df['count'], non_outlier_df['avg_pageviews'])
-```
-
-
-![png](/img/2018-10-02-category_19_0.png)
-
-
-- 대체적으로 콘텐츠의 갯수가 많을 수록 평균 페이지뷰수도 늘어난다.
-- 콘텐츠 갯수가 많지 않음에도 평균 페이지뷰수가 높은 카테고리는 다음과 같다.
-  - 생산/제조(5개, 554)
-  - 공무원/공공/비영리(3개, 356)
-  - IT개발(1개, 319)
-
-#### 2) 콘텐츠 갯수와 평균 이탈률
-
-
-```python
-category_df['bounce_rate'] = category_bnc
-category_df = category_df[~category_df.index.duplicated(keep='first')]
-
-get_linear_regression(category_df['count'], category_df['bounce_rate'])
-```
-
-
-![png](/img/2018-10-02-category_22_0.png)
-
-
-전략/기획(1개, 1.0), 디자인/예술(3개, 0.542)은 회귀선과 가장 멀리 떨어져있다. 전략/기획을 제외하고 다시 그려보자.
-
-
-```python
-non_outlier_df = category_df.drop(['전략/기획'])
-get_linear_regression(non_outlier_df['count'], non_outlier_df['bounce_rate'])
-```
-
-
-![png](/img/2018-10-02-category_24_0.png)
-
-
-- 회귀선은 우상향하지만 콘텐츠 갯수가 늘어날수록 이탈률도 높아진다고 하기엔 어렵다.(패턴이 확연히 보이지 않는다.)
-- '전략/기획'(1개, 1.0) 카테고리는 콘텐츠 갯수는 적지만 이탈률이 가장 높다.
-  - 해당 글의 세션이 1이기 때문에 유의미한 데이터로 보기 어렵다.
-- 'IT개발'(1개, 0.9) 카테고리는 세션수와 페이지뷰는 높으나 이탈률이 높은 것으로 보아 관련 콘텐츠가 없어서 이탈한다고 추측할 수 있지 않을까.
-- '디자인/예술'(3개, 0.542), '홍보/CSR'(3, 0.569) 카테고리는 컨텐츠 갯수는 적지만 이탈률이 가장 낮다. -> 왜일까?(추후분석하기)
-
-#### 3) 콘텐츠 갯수와 평균 세션
-
-
-```python
-category_df['session'] = df.groupby(['category']).sessions.mean()
-category_df = category_df[~category_df.index.duplicated(keep='first')]
-
-get_linear_regression(category_df['count'], category_df['session'])
-```
-
+전반적으로 내가 한 데이터 분석은 구체적인 가설에 대한 검정보다는, 데이터 탐색 단계에 가까웠다고 생각한다. 뚜렷한 목표가 없었으며, 그로 인해서 분석을 하면서 내가 잘 하고 있는 것인지 헷갈렸던 것 같다. 데이터 분석을 하면서 대충 유저들이 어디서 오고, 무엇을 원하고, 어떤 페이지를 보는지는 대강 큰 그림이 그려졌고, 그 과정은 재미있었다. 하지만 이 결과를 실제로 어떻게 활용할 것인지에 대한 고민은 아직도 남아있다. 마케팅이나 UX 디자인을 할 때 이용할 수 있지 않을까 생각을 한다. 
 
-![png](/img/2018-10-02-category_27_0.png)
+GA를 실무에서 다루어보기는 했지만, 전에 이용해보지 못했던 기능들을 이번에는 활용하고, 데잇걸즈 프로그램에서 배웠던 Python과 Pandas Library를 써본 것이 만족스러웠다. 도구들이 왜 존재하고, 어떻게 이용해야 하는지에 대해서 약간의 감을 잡았다고 생각한다. 
 
-
-생산/제조(5개, 275.4), 공무원/공공/비영리(3개, 222)는 회귀선과 가장 멀리 떨어져있다. 생산/제조를 제외하고 다시 그려보자.
-
-
-
-```python
-non_outlier_df = category_df.drop(['생산/제조'])
-get_linear_regression(non_outlier_df['count'], non_outlier_df['session'])
-```
-
-
-![png](/img/2018-10-02-category_29_0.png)
-
-
-그래프는 우하향으로 그려졌지만 세션수가 100 이상인 카테고리를 아웃라이어로 제외시키고 나머지 데이터들을 보면 우상향하는 것을 볼 수 있다. 
-- 콘텐츠 갯수가 많을수록 세션수는 증가하는 경향을 보인다.
-- 하지만 콘텐츠 갯수와 관계 없이 세션수가 유난히 큰 카테고리들이 존재한다.
-  - 생산/제조(5개, 275.4)
-  - 공무원/공공/비영리(3개, 222)
-  - IT개발(1개, 152)
-  - 연구/설계(4개, 130.25)
-  - 전문/특수(9개, 133.33)
-- 왜 이 카테고리들의 세션수는 높을까?  
-
-**분석1 정리**
-
-1. 카테고리 내 콘텐츠 갯수가 많을수록 페이지뷰 수가 높을 것이다.
-  - 대체적으로 그런 편이지만 경향을 벗어나는 카테고리들이 존재한다.
-  - 생산/제조(5개, 554)
-  - 공무원/공공/비영리(3개, 356)
-  - IT개발(1개, 319)
-2. 카테고리 내 콘텐츠 갯수가 많을수록 이탈률은 낮을 것이다.
-  - 현재 존재하는 데이터만으로 확인하기가 쉽지 않다. 콘텐츠의 전체 양이 더 많아지면 확인 가능할 것이라 생각한다.
-3. 카테고리 내 콘텐츠 갯수가 많을수록 세션은 높을 것이다.
-  - 아웃라이어를 제외하고 보면 갯수와 세션은 함께 증가한다. 아웃라이어는 다음과 같다.
-  - 생산/제조(5개, 275.4)
-  - 공무원/공공/비영리(3개, 222)
-  - IT개발(1개, 152)
-  - 연구/설계(4개, 130.25)
-  - 전문/특수(9개, 133.33)
-    
-카테고리 콘텐츠 갯수와 이탈률 관계분석에서 유의미한 정보를 얻지 못했다. 콘텐츠 갯수가 아닌 페이지뷰수나 세션수를 분석해보면 유의미한 정보를 얻을 수 있지 않을까?
-
-### 분석2. 카테고리 이탈률과 페이지뷰, 세션
-**가설**
-1. 페이지뷰가 많을수록 이탈률도 높을 것이다.
-2. 세션이 많을수록 이탈률도 높을 것이다.
-
-#### 1) 이탈률과 평균 페이지뷰수
-
-
-```python
-get_linear_regression(category_df['bounce_rate'], category_df['avg_pageviews'])
-```
-
-
-![png](/img/2018-10-02-category_34_0.png)
-
-
-생산/제조(0.631, 554)가 회귀선과 가장 멀다. 이를 제외하고 다시 그려보자.
-
-
-```python
-non_outlier_df = category_df.drop(['생산/제조'])
-get_linear_regression(non_outlier_df['bounce_rate'], non_outlier_df['avg_pageviews'])
-```
-
-
-![png](/img/2018-10-02-category_36_0.png)
-
-
-- 페이지뷰 수가 증가하면 이탈률도 증가하는 편이다.
-- 생산/제조(0.631, 554) 카테고리는 높은 페이지뷰 수에도 이탈률이 낮은 편이다. -> 왜 그럴까?
-- 전략/기획(1.0, 51), 교육/상담/컨설팅(0.778, 51) 카테고리는 페이지뷰 수가 낮지만 이탈률이 높은 편이다. -> 왜 그럴까?
-
-#### 2) 이탈률과 평균 세션
-
-
-```python
-get_linear_regression(category_df['bounce_rate'], category_df['session'])
-```
-
-
-![png](/img/2018-10-02-category_39_0.png)
-
-
-생산/제조(0.631, 275.4)를 제외하고 그려보자
-
-
-```python
-non_outlier_df = category_df.drop(['생산/제조'])
-get_linear_regression(non_outlier_df['bounce_rate'], non_outlier_df['session'])
-```
-
-
-![png](/img/2018-10-02-category_41_0.png)
-
-
-- 세션이 증가하면 이탈률도 증가하는 편이다.
-- 생산/제조(0.631, 275.4) 카테고리는 가장 많은 세션이 있지만 이탈률은 낮은 편이다.
-- 전략/기획(1.0, 1) 카테고리는 세션이 가장 작자만 이탈률이 가장 높다.
-
-**분석2 정리**
-
-1. 페이지뷰가 많을수록 이탈률도 높을 것이다.
-  - 대체적으로 그런 편이지만 경향을 벗어나는 카테고리가 있다.
-  - 생산/제조(0.631, 554) : 이탈률이 낮고 뷰수가 높다.
-  - 전략/기획(1.0, 51) : 이탈률이 매우 높고, 뷰수는 매우 낮다.
-2. 세션이 많을수록 이탈률도 높을 것이다.
-  - 대체적으로 그런 편이지만 경향을 벗어나는 카테고리가 있다.
-  - 생산/제조(0.631, 275.4) : 이탈률이 낮고 세션이 높다.
-  - 전략/기획(1.0, 1) : 이탈률이 매우 높고, 세션이 고작 1이다.
-  
-이탈률 대비 페이지뷰 값을 구해보면 유저들의 선호도가 나올 수 있지 않을까?(이탈률 1%당 페이지뷰)
-
-
-```python
-category_df['pv/br'] = category_df['avg_pageviews']/(category_df['bounce_rate']*100)
-category_df = category_df[~category_df.index.duplicated(keep='first')]
-```
-
-
-```python
-category_df.sort_values(by='pv/br',ascending = False)
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-</div>
-
+쓸 수 있는 데이터셋의 크기가 크지 않고, 딱히 분석할 것이 많지 않은 점은 아쉬웠다. 회사 컨택할 때부터 모두 예상하던 일이였기는 하지만. 제대로 데이터를 수집하고, 활용하는 기업들을 직접 관찰이라도 할 수 있는 기회가 있다면 조금 더 데이터 분석이 실무에서 어떻게 쓰이는지 알 수 있을 것 같다.
 
