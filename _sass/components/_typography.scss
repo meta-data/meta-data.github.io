@@ -34,7 +34,7 @@ blockquote {
 
 a {
    text-decoration: none;
-   color: $primary;
+   color: $text-color;
    &:hover,
    &:focus {
      color: lighten($primary, 14%);

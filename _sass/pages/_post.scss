@@ -239,12 +239,13 @@ a.read-more {
     border-color: #5f99cf;
   }
 }
-
-img {
-  @include media-query($medium-screen) {
-    width: 50%;
-    left: 4rem;
-    margin: 1rem 0;
-    max-height: 10%
+.post-content {
+  img {
+    @include media-query($medium-screen) {
+      width: 50%;
+      left: 4rem;
+      margin: 1rem 0;
+      max-height: 10%
+    }
   }
 }
