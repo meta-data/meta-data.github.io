@@ -24,7 +24,7 @@
   <meta name="twitter:title" content="{{ title | escape }}">
   <meta name="twitter:description" content="{{ description | escape }}">
   {% if page.image.feature %}
-    <meta property="twitter:image" content="{{ site.url }}/img/{{ page.image.feature }}">
+    <meta property="twitter:image" content="{{ page.image.feature }}">
   {% else %}
     <meta property="twitter:image" content="{{ site.url }}/img/og_image.png">
   {% endif %}
@@ -35,7 +35,7 @@
   <meta property="og:title" content="{{ title | escape }}">
   <meta property="og:description" content="{{ description | escape }}">
   {% if page.image.feature %}
-    <meta property="og:image" content="{{ site.url }}/img/{{ page.image.feature }}">
+    <meta property="og:image" content="{{ page.image.feature }}">
   {% else %}
     <meta property="og:image" content="{{ site.url }}/img/og_image.png">
   {% endif %}
