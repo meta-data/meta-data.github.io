@@ -3,6 +3,7 @@
   background-color: $white;
   width: 100%;
   padding: 10rem 2rem 0;
+  text-align: justify;
   @include media-query($medium-screen) {
     height: 100vh;
     overflow-y: scroll;
@@ -23,7 +24,7 @@
 
 // Post Section
 section.post {
-	margin-bottom: 80px;
+    margin-bottom: 80px;
 }
 
 // Back home button
@@ -43,30 +44,30 @@ section.post {
 }
 
 .post-title-link {
-	color: $primary;
-	font-size: 14px;
-	margin-left: 10px;
-	&:hover,
-	&:focus {
-		color: lighten($primary, 14%);
-	}
+    color: $primary;
+    font-size: 14px;
+    margin-left: 10px;
+    &:hover,
+    &:focus {
+        color: lighten($primary, 14%);
+    }
 }
 
 // Post meta
 .post-meta {
   font-size: 13px;
   font-weight: bold;
-	.post-date {
-		color: $secondary;
-	}
-	.post-author {
-		text-transform: uppercase;
-		color: $warning;
-	}
+    .post-date {
+        color: $secondary;
+    }
+    .post-author {
+        text-transform: uppercase;
+        color: $warning;
+    }
   .post-cat {
-		text-transform: uppercase;
-		color: $warning;
-	}
+        text-transform: uppercase;
+        color: $warning;
+    }
   .read-time {
     color: $primary;
   }
@@ -85,6 +86,9 @@ a.read-more {
   .post-header {
     margin: 0 auto 50px;
   }
+  @include media-query($medium-screen) {
+   max-width: 50rem;
+  }
 }
 
 #post h1 {
@@ -92,19 +96,45 @@ a.read-more {
 }
 #post h2 {
   margin: 2em 0 0.8em;
-  padding-bottom: 0.7em;
+  padding-bottom: 0.1rem;
   border-bottom: 1px solid #ddd;
 }
 #post h3 {
-  margin: 1.75em 0 1.2em;
+  margin: 1.75em 0 0.4rem;
+  position: relative;
+}
+#post h4 {
+  margin: 1.6em 0 0.2rem;
   position: relative;
 }
 
+#post a {
+  color: $secondary;
+}
+#post img {
+  .small-img {
+    @include media-query($medium-screen) {
+      width: 50%;
+    }
+  }
+  width: 100%;
+  margin: 1.5rem 0 1rem 0;
+  @include media-query($medium-screen) {
+    width: 80%;
+  }
+}
+#post em {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
 #page {
   padding-bottom: 50px;
   min-height: 70vh;
   .page-header {
     margin: 0 auto 50px;
+  }
+  @include media-query($medium-screen) {
+   max-width: 90rem;
   }
 }
 
@@ -197,55 +227,8 @@ a.read-more {
     border-color: #627aac;
   }
 }
-.google-plus {
-  background-color: #e36f60;
-  color: $white;
-  border-color: #e36f60;
-  &:visited {
-    color: $white;
-    border-color: #e36f60;
-  }
-  &:hover {
-    background-color: $white;
-    color: #e36f60;
-    border-color: #e36f60;
-  }
+#markdown-toc {
+  margin-bottom: 5rem;
 }
-.hacker-news {
-  background-color: #f60;
-  color: $white;
-  border-color: #f60;
-  &:visited {
-    color: $white;
-    border-color: #f60;
-  }
-  &:hover {
-    background-color: $white;
-    color: #f60;
-    border-color: #f60;
-  }
-}
-.reddit {
-  background-color: #5f99cf;
-  color: $white;
-  border-color: #5f99cf;
-  &:visited {
-    color: $white;
-    border-color: #5f99cf;
-  }
-  &:hover {
-    background-color: $white;
-    color: #5f99cf;
-    border-color: #5f99cf;
-  }
-}
-.post-content {
-  img {
-    @include media-query($medium-screen) {
-      width: 50%;
-      left: 4rem;
-      margin: 1rem 0;
-      max-height: 10%
-    }
-  }
-}
+
+

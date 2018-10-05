@@ -23,9 +23,10 @@ html {
 blockquote {
   display: block;
 	position: relative;
-  padding-left: 20px;
-  font-style: italic;
-  border-left: 5px solid $secondary;
+  padding-left: 1rem;
+  border-left: 5px solid $gray;
+  margin-inline-start: 1.5rem;
+  margin-inline-end: 1.5rem;
 }
 
 //
