@@ -3,7 +3,7 @@ layout: post
 title:  구글 애널리틱스를 이용한 서비스 콘텐츠와 유저 분석
 permalink: /project/
 image:
-  feature: https://images.unsplash.com/photo-1501772529219-ed0014f5032c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9dab1f9068d2b059a79cfdc65b2731dd&auto=format&fit=crop&w=334&q=80%20334w
+  feature: project.png
 ---
 
 
