@@ -191,7 +191,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 아웃라이어를 제외하면 제외하기 전과 달리 기울기가 음수에서 양수로 바뀌었습니다. 페이지뷰 수가 높은 콘텐츠일수록 이탈률도 높다고 볼 수 있지만 오차가 존재하고 추세선의 기울기 크기도 크지 않았습니다. 데이터가 더 많았다면 유의미한 결론을 내릴 수 있었겠지만 두 요소의 관계를 확인하는 것에 의의를 두고 분석을 마무리하였습니다.
 
 
-### 유저 그룹으로 나누기
+## 유저 그룹으로 나누기
 
 이탈률을 줄이는 방법은 크게 두 가지가 있습니다. 이탈하는 유저를 줄이는 방법도 있겠지만, 유입되는 유저를 늘리는 방법도 있습니다. 신규 유저 중에서 이탈하지 않은 유저들은 어떤 채널에서 유입되었는지, 웹사이트에서는 얼마나 오래 머무르는지 등을 이 분석에서 알아보도록 하겠습니다.
 
@@ -205,7 +205,7 @@ Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐
 
 ![평균 세션당 체류시간](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7f59a4cf-727e-43f0-abb7-b2aaa017d9e6/ScreenShot2018-10-06at3.42.17AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883214&Signature=K9edzWolqkUB4AVXzWIsIcov2eY%3D)
 
-#### 헤비 유저
+### 헤비유저 정의하기
 
 ![박스플롯1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1511a527-d8e8-485c-8600-d74c9aec7b55/ScreenShot2018-10-06at10.35.29AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883222&Signature=MFdKfdYANFEy1lFK9vtnqLfkQzg%3D)
 ![박스플롯2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d8b75ba1-3ae9-4422-93c9-a665fff8cb4a/ScreenShot2018-10-06at10.35.34AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883229&Signature=rataMHOAPO7PIHVnbp0jKyJHwf8%3D)
@@ -216,7 +216,7 @@ Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐
 
 3개의 Boxplot에서 이상치가 1000초 이상에서 나타나는 공통점을 볼 수 있습니다. 그리하여 저희는 '헤비 유저'를 1000초 이상 웹사이트에 체류하는 유저로 정의했습니다.
 
-## 유저 유입 분석하기
+### 유저 유입 분석하기
 ![헤비유저](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3a4f674d-b038-47bc-af5d-a3ffad8311b0/ScreenShot2018-10-06at10.44.47AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883244&Signature=Q9TdMUv7G1A96yV9A0rJkBRZ8Gs%3D)
 
 ![라이트유저 유입](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fc605e08-203d-4d5d-9213-35d720f5395f/ScreenShot2018-10-06at10.43.13AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883251&Signature=ZimhU%2F76l4WhAPBYvZ0Q0aKZZNw%3D)
