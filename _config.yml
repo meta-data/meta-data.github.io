@@ -4,10 +4,10 @@
 ####################################
 #
 title: MetaData
-email: dataitgirls.metadata@gmail.com를
+email: dataitgirls.metadata@gmail.com
 description: MetaData는 애자일한 조직으로 파트너와 함께 성장하기를 바랍니다
 url: https://meta-data.github.io/
-keywords: ["blog", "jekyll", "Data", "analysis", "KPI", "GA", "데잇걸즈", "메타데이터", "데이터분석"]
+keywords: ["blog", "jekyll", "Data", "analysis", "KPI", "GA", "데잇걸즈", "메타데이터", "데이터분석", "애자일"]
 
 #
 ###################################
@@ -42,7 +42,7 @@ owner:
   facebook: #username
   google:
     plus: #username
-    analytics: #"UA-125813740-1"
+    analytics: "UA-125813740-1"
     verify:
     ad-client:
     ad-slot:
