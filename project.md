@@ -191,7 +191,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 아웃라이어를 제외하면 제외하기 전과 달리 기울기가 음수에서 양수로 바뀌었습니다. 페이지뷰 수가 높은 콘텐츠일수록 이탈률도 높다고 볼 수 있지만 오차가 존재하고 추세선의 기울기 크기도 크지 않았습니다. 데이터가 더 많았다면 유의미한 결론을 내릴 수 있었겠지만 두 요소의 관계를 확인하는 것에 의의를 두고 분석을 마무리하였습니다.
 
 
-## 유저 그룹으로 나누기
+### 유저 그룹으로 나누기
 
 이탈률을 줄이는 방법은 크게 두 가지가 있습니다. 이탈하는 유저를 줄이는 방법도 있겠지만, 유입되는 유저를 늘리는 방법도 있습니다. 신규 유저 중에서 이탈하지 않은 유저들은 어떤 채널에서 유입되었는지, 웹사이트에서는 얼마나 오래 머무르는지 등을 이 분석에서 알아보도록 하겠습니다.
 
@@ -205,7 +205,7 @@ Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐
 
 ![평균 세션당 체류시간](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7f59a4cf-727e-43f0-abb7-b2aaa017d9e6/ScreenShot2018-10-06at3.42.17AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883214&Signature=K9edzWolqkUB4AVXzWIsIcov2eY%3D)
 
-## 헤비 유저
+#### 헤비 유저
 
 ![박스플롯1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1511a527-d8e8-485c-8600-d74c9aec7b55/ScreenShot2018-10-06at10.35.29AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883222&Signature=MFdKfdYANFEy1lFK9vtnqLfkQzg%3D)
 ![박스플롯2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d8b75ba1-3ae9-4422-93c9-a665fff8cb4a/ScreenShot2018-10-06at10.35.34AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883229&Signature=rataMHOAPO7PIHVnbp0jKyJHwf8%3D)
@@ -223,7 +223,7 @@ Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐
 
 '헤비 유저'와 '라이트 유저(헤비 유저를 제외한 나머지)'로 나누어서, 유입에 차이가 있었는지 분석해보았습니다. 하지만 크게 유의미한 차이는 나타나지 않았습니다. 둘 다 대부분 구글이나 네이버 등의 검색 엔진에서 유입되는 것을 알 수 있었습니다. 
 
-## 유저 행동 분석하기
+### 유저 행동 분석하기
 유저들의 유입은 큰 차이가 없었지만, 이탈률에서는 차이가 난다는 점이 발견되었기에 '헤비 유저와 라이트 유저는 웹사이트에서 다른 의도를 가지고 행동을 할 것이다'라는 가설을 세우게 되었습니다.
 
 가설과 관련된 분석은 유저 행동 분석이 되었고, 이를 Google Analytics에 있는 User Explorer를 이용해서 진행하였습니다.
