@@ -191,9 +191,56 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 아웃라이어를 제외하면 제외하기 전과 달리 기울기가 음수에서 양수로 바뀌었습니다. 페이지뷰 수가 높은 콘텐츠일수록 이탈률도 높다고 볼 수 있지만 오차가 존재하고 추세선의 기울기 크기도 크지 않았습니다. 데이터가 더 많았다면 유의미한 결론을 내릴 수 있었겠지만 두 요소의 관계를 확인하는 것에 의의를 두고 분석을 마무리하였습니다.
 
 
+## 유저 그룹으로 나누기
+
+이탈률을 줄이는 방법은 크게 두 가지가 있습니다. 이탈하는 유저를 줄이는 방법도 있겠지만, 유입되는 유저를 늘리는 방법도 있습니다. 신규 유저 중에서 이탈하지 않은 유저들은 어떤 채널에서 유입되었는지, 웹사이트에서는 얼마나 오래 머무르는지 등을 이 분석에서 알아보도록 하겠습니다.
+
+![Landing Page로 유저 나누기](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/31674308-86ea-4d0e-a49b-ea495272d1bc/ScreenShot2018-10-06at3.00.42AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883182&Signature=F0clqe9dmj9ACPl1Vwvug3UCVbY%3D)
+
+Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐츠 포스트 그리고 기타 페이지로 나누어서, 각 페이지의 평균 이탈률을 확인했습니다.
+
+![평균 이탈률](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5c9dae96-807f-43ab-9808-1fba5e26cc4c/ScreenShot2018-10-06at3.46.11AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883205&Signature=7uF4RVLoYzkM5q1ms19mecHJu4c%3D)
+
+컨텐츠 홈으로 유입된 유저들의 이탈률은 58%, 컨텐츠 포스트로 유입된 유저들의 이탈률은 80%가 나왔습니다. 둘 다 평균(55%)보다 더 높은 이탈률을 보이며, 특히 컨텐츠 포스트로 유입된 유저들의 이탈률이 높습니다.
+
+![평균 세션당 체류시간](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7f59a4cf-727e-43f0-abb7-b2aaa017d9e6/ScreenShot2018-10-06at3.42.17AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883214&Signature=K9edzWolqkUB4AVXzWIsIcov2eY%3D)
+
+## 헤비 유저
+
+![박스플롯1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1511a527-d8e8-485c-8600-d74c9aec7b55/ScreenShot2018-10-06at10.35.29AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883222&Signature=MFdKfdYANFEy1lFK9vtnqLfkQzg%3D)
+![박스플롯2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d8b75ba1-3ae9-4422-93c9-a665fff8cb4a/ScreenShot2018-10-06at10.35.34AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883229&Signature=rataMHOAPO7PIHVnbp0jKyJHwf8%3D)
+![박스플롯3](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e5ceaae6-e671-4e81-be3f-a0324df223f5/ScreenShot2018-10-06at10.38.25AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883237&Signature=CxE%2B3I09gEDCGv4V3L33lkR9rig%3D
+)
+
+각 그룹의 세션당 체류시간을 Boxplot으로 그려보았습니다. Boxplot은 수치적 자료를 보여주는 그래프이며, 흔히 데이터의 분산 및 이상치(outlier)를 탐색하기 위해서 사용됩니다. 그려보니 확연하게 이상치가 나타나는 것을 볼 수 있고, 이를 토대로 평균 유저보다 더 오래 웹사이트에 머무르는 '헤비 유저'를 정의했습니다. 
+
+3개의 Boxplot에서 이상치가 1000초 이상에서 나타나는 공통점을 볼 수 있습니다. 그리하여 저희는 '헤비 유저'를 1000초 이상 웹사이트에 체류하는 유저로 정의했습니다.
+
+## 유저 유입 분석하기
+![헤비유저](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3a4f674d-b038-47bc-af5d-a3ffad8311b0/ScreenShot2018-10-06at10.44.47AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883244&Signature=Q9TdMUv7G1A96yV9A0rJkBRZ8Gs%3D)
+
+![라이트유저 유입](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fc605e08-203d-4d5d-9213-35d720f5395f/ScreenShot2018-10-06at10.43.13AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883251&Signature=ZimhU%2F76l4WhAPBYvZ0Q0aKZZNw%3D)
+
+'헤비 유저'와 '라이트 유저(헤비 유저를 제외한 나머지)'로 나누어서, 유입에 차이가 있었는지 분석해보았습니다. 하지만 크게 유의미한 차이는 나타나지 않았습니다. 둘 다 대부분 구글이나 네이버 등의 검색 엔진에서 유입되는 것을 알 수 있었습니다. 
+
+## 유저 행동 분석하기
+유저들의 유입은 큰 차이가 없었지만, 이탈률에서는 차이가 난다는 점이 발견되었기에 '헤비 유저와 라이트 유저는 웹사이트에서 다른 의도를 가지고 행동을 할 것이다'라는 가설을 세우게 되었습니다.
+
+가설과 관련된 분석은 유저 행동 분석이 되었고, 이를 Google Analytics에 있는 User Explorer를 이용해서 진행하였습니다.
+
+![User Explorer](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/806cad72-6e8e-45be-8e09-fd6ddb40f7a0/ScreenShot2018-10-06at10.48.49AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883258&Signature=BCvKXAxR%2FnYCMof7JFfBbnhgghE%3D)
+![User Explorer2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/895e61ef-5342-4851-aadd-b2c85ef98df8/ScreenShot2018-10-06at10.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883265&Signature=nY%2FnpcxZjvOqwESw%2BuTzThKnNa8%3D)
+
+User Explorer를 이용하면 GA가 track한 유저들의 행동 정보 - 클릭한 페이지, 각 페이지에 머문 시간 - 등을 상세하게 볼 수 있습니다. 2만개의 이상의 유저 정보를 볼 수 있었지만, GA 무료 버전에서는 자동화를 할 수가 없어서 모든 유저 정보를 분석하기에는 힘들었습니다.
+
+그리하여, '헤비 유저'와 '라이트 유저'에 해당하는 유저들을 샘플링하여, 그들의 행동에서 유의미한 패턴을 찾아볼 수 있는지 분석하였고, 그 결과 이와 같은 패턴을 발견하였습니다.
+
+- '헤비 유저' - 컨텐츠 보다는 웹사이트의 다른 서비스를 이용하는 경향이 있다.
+- '라이트 유저' - 자신의 관심사와 연관된 컨텐츠를 보는 경향이 있다. 컨텐츠에 검색 기능이 완성되지 않아서, 다른 페이지로 이동하기도 했다.
+
+그리하여 새로운 유저들을 유입하려면, 그들의 관심사에 맞는 컨텐츠를 제작해야 하며, 검색 기능을 추가하는 UX적인 제안을 회사에 하게 되었습니다.
 
 
-## 유저 분석
 
 ## 쉽지 않네 이거...
 
