@@ -24,7 +24,7 @@ MetaData와 프로젝트를 진행하게 된 기업은 블로그 포스트 형�
 
 일차적으로 GA를 탐색하며 콘텐츠와 관련된 사용자들의 행동을 파악할 수 있었고 다음과 같은 지표들을 분석에 활용하기로 하였습니다.
 
-![구글 애널리틱스 화면 예시](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0ef39eec-b5a2-4dc2-8a46-a62c498f4468/2018-10-054.02.42.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538836655&Signature=Qf%2Fb7IPOyYO1zyyu8HKmbqBOzrA%3D)
+![구글 애널리틱스 화면 예시](/img/web/ga_1.png)
 *< 구글 애널리틱스 화면 예시 >*
 
 - 유입 채널 : 사용자들이 사이트로 유입한 경로
@@ -56,7 +56,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 크롤링한 데이터와 실시간으로 뽑은 데이터는 스프레드시트에서 하나로 합쳐 분석을 위한 데이터 셋으로 활용하였습니다.
 
-![스프레드시트에서 구글 애널리틱스 데이터 가져오기](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f0d6d357-81b8-470b-9905-0954261f5c4f/2018-10-055.13.22.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538836679&Signature=%2F7rDjzdTolGi4ej7S3TT9Tcr%2Bl4%3D)
+![스프레드시트에서 구글 애널리틱스 데이터 가져오기](/img/web/ga_2.png)
 *< 스프레드시트에서 구글 애널리틱스 데이터 가져오기 >*
 
 ### 4. 콘텐츠 탐색을 통해 추가된 데이터들
@@ -79,7 +79,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 94개의 콘텐츠에 대한 데이터셋을 이용하여, 무엇을 할 수 있을까? 어떤 요소를 먼저 보아야 할까?를 끊임없이 생각해 보았습니다. 그러던 중, 콘텐츠의 미리보기가 눈에 띄었습니다. 처음 유저의 관심을 끌고 추후에 글을 눌러, 유입시키는데 중요한 역할을 하기 때문입니다. 그렇다면 미리보기에는 이미 콘텐츠들의 주제가 담겨있지 않을까?라는 생각을 하게 되었습니다.
 
-![Wordcloud를 이용한 미리보기 텍스트 시각화](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b3d97f2d-ad82-4b19-8173-cb7bb2be227c/download-5.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538854307&Signature=eEgDcKG6M0Hwf9kROnQV%2BK0sJIs%3D)
+![Wordcloud를 이용한 미리보기 텍스트 시각화](/img/web/sub_1.png)
 *< Wordcloud를 이용한 미리보기 텍스트 시각화 >*
 
 각 콘텐츠의 미리보기 텍스트들을 모두 모아 가장 많이 언급된 단어들만 추려 시각화 해 본 결과, 위와 같은 결과가 나타났습니다.
@@ -101,7 +101,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 앞서 구했던 키워드들이 가장 많이 포함된 글들은 일반적인 직무와 업무의 정보와 관련된 내용의 글들이었습니다. 과연 이들이 유저에게 흥미를 유발하고, 따른 콘텐츠들을 둘러보게 만들었을까?에 관한 궁금증이 생겼습니다. 이를 확인해보기 위해 [상관계수](https://en.wikipedia.org/wiki/Correlation_coefficient)를 살펴보기로 하였습니다. 
 
-![콘텐츠에 빈출 키워드가 포함된 횟수와 여러 GA지표들 간의 상관관계 히트맵](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/98623321-1b12-4340-b394-03f06335d9ac/keyword_sum_corr.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538854460&Signature=PTgJuaTYXlPy09VYOPXOY6kT9%2Fo%3D)
+![콘텐츠에 빈출 키워드가 포함된 횟수와 여러 GA지표들 간의 상관관계 히트맵](/img/web/sub_2.png)
 
 *< 콘텐츠에 빈출 키워드가 포함된 횟수와 여러 GA지표들 간의 상관관계 히트맵 >*
 
@@ -115,7 +115,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 처음 만들었던 데이터셋을 이용하여, 내용적 부분에 중점을 두어 바라본다면 무엇을 볼 수 있을까요? 초기 접근은 늘 그래왔듯 가장 직관적으로 생각하여 보았습니다. 내용요소(subject)가 절대적으로 많은 콘텐츠에 상대적으로 많은 정보가 담겨 있으며, 이것이 곧 이용자들이 다른 콘텐츠도 둘러보게되는 요인이 될 것이라고 생각했습니다. 따라서 요소의 포함 개수(1-4개)와 각 콘텐츠 페이지의 이탈률 포함 여러 요소들과 다시 상관계수 히트맵을 그려서 확인해 보았습니다.
 
-![요소(subject)의 개수와 여러 GA지표 간 상관관계 히트맵](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a4acba81-f04d-4713-92d4-13fa8a4894a7/subject_count.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538854613&Signature=wR7t5qWIpW91DHW5QWCejE81eJk%3D)
+![요소(subject)의 개수와 여러 GA지표 간 상관관계 히트맵](/img/web/sub_3.png)
 
 *< 요소(subject)의 개수와 여러 GA지표 간 상관관계 히트맵 >*
 
@@ -139,15 +139,15 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 - 자소서+P요소+I요소의 포함 여부와 이탈률
 - … 등등
 
-![통계적으로 무의미한 결론의 연속](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f85d0977-224a-40e6-9200-9048d25c932e/2018-10-063.39.58.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538854665&Signature=TNfT5uWDvulK4RChn%2FiWLd9uJPk%3D)
+![통계적으로 무의미한 결론의 연속](/img/web/sub_4.png)
 
 *< 통계적으로 무의미한 결론의 연속 >*
 
 동시에 여러 요소들을 가지고 있는 콘텐츠를 비교하다보니, 정확히 어떤 요소가 이탈률의 차이를 만들어내는 지 명확하게 드러나지 않았습니다. 따라서 이후에는 각 요소 하나씩 만을 기준으로 하여 해당 요소를 포함/미포함 콘텐츠로 나누어 box-plot과 ANOVA검정을 다시 진행해 보았습니다. 그리고 그 결과 다른 요소들 보다 눈에 띄게 평균 이탈률에 차이를 유발한 요소를 하나 발견하였습니다.
 
-![S요소를 포함/미포함하는 콘텐츠의 평균 이탈률 비교1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ea8e8043-9338-488d-8d7f-686d1d6797ba/subject_S_ANOVA.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538854734&Signature=8%2BurdH8XykIDd21XsxO%2BORZxHJk%3D)
+![S요소를 포함/미포함하는 콘텐츠의 평균 이탈률 비교1](/img/web/sub_5.png)
 
-![S요소를 포함/미포함하는 콘텐츠의 평균 이탈률 비교2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/bba593a9-cabd-43e9-af4b-35e9c69e8510/subject_S_diff.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538854771&Signature=kafEb9zfObJyKf6knWmZc%2BKiIvs%3D)
+![S요소를 포함/미포함하는 콘텐츠의 평균 이탈률 비교2](/img/web/sub_6.png)
 
 *< S요소를 포함/미포함하는 콘텐츠의 평균 이탈률 비교 >*
 
@@ -175,7 +175,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 일단 콘텐츠 개수와 이탈률의 관계를 알아보기 위해 산점도를 그렸습니다. 유의미한 패턴을 기대했으나 18개의 점들은 패턴 없이 그래프 상에 퍼져있었습니다. 콘텐츠 개수와 페이지뷰, 콘텐츠 개수와 세션도 마찬가지였습니다. 
 
-![콘텐츠 개수와 이탈률의 관계 그래프](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d812a3d4-85c6-42dd-a9d9-bb0e57f57790/download-1.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538839536&Signature=kuu8h6oyCkcErlBp3zug6VYXO%2Bc%3D){:style="width:50%"}
+![콘텐츠 개수와 이탈률의 관계 그래프](/img/web/ca_1.png){:style="width:50%"}
 *< 콘텐츠 개수와 이탈률의 관계 그래프 >*
 
 대신 다른 카테고리에 비해 이탈률이 특히 높은 카테고리에 눈이 갔습니다. 이탈률이 90%, 100%로 가장 높았고 이 둘 모두 글이 1개뿐이라는 공통점이 있었습니다. 또한 이탈률이 가장 낮은 카테고리는 글의 개수가 5개로 10개의 글을 가진 카테고리보다 이탈률이 낮았습니다. 전제와 다르게 카테고리 내 콘텐츠 개수와 이탈률은 크게 관계가 없었습니다.
@@ -185,7 +185,7 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 이탈률과 관련 있는 요소를 찾기 위해 이탈률과 페이지뷰, 이탈률과 세션 간 산점도를 그려보았습니다. 첫번째 분석보다는 어느 정도 패턴이 보이는 것 같아 아웃라이어를 제외하고 다시 산점도를 그려보았습니다.
 
-![아웃라이어 유무에 따른 이탈률과 페이지뷰의 관계 그래프](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/292fea04-a4a1-4090-be38-545cb4556321/download-2.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538839577&Signature=vzQIy%2FgxTrGALMGFz2mJhXoxiCE%3D)
+![아웃라이어 유무에 따른 이탈률과 페이지뷰의 관계 그래프](/img/web/ca_2.png)
 *< (좌)아웃라이어가 포함된 이탈률과 페이지뷰 그래프 (우)아웃라이어가 제거된 이탈률과 페이지뷰 그래프 >*
 
 아웃라이어를 제외하면 제외하기 전과 달리 기울기가 음수에서 양수로 바뀌었습니다. 페이지뷰 수가 높은 콘텐츠일수록 이탈률도 높다고 볼 수 있지만 오차가 존재하고 추세선의 기울기 크기도 크지 않았습니다. 데이터가 더 많았다면 유의미한 결론을 내릴 수 있었겠지만 두 요소의 관계를 확인하는 것에 의의를 두고 분석을 마무리하였습니다.
@@ -195,31 +195,30 @@ GA 데이터는 매일 수치가 달라지기 때문에 분석 시점에서는 �
 
 이탈률을 줄이는 방법은 크게 두 가지가 있습니다. 이탈하는 유저를 줄이는 방법도 있겠지만, 유입되는 유저를 늘리는 방법도 있습니다. 신규 유저 중에서 이탈하지 않은 유저들은 어떤 채널에서 유입되었는지, 웹사이트에서는 얼마나 오래 머무르는지 등을 이 분석에서 알아보도록 하겠습니다.
 
-![Landing Page로 유저 나누기](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/31674308-86ea-4d0e-a49b-ea495272d1bc/ScreenShot2018-10-06at3.00.42AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883182&Signature=F0clqe9dmj9ACPl1Vwvug3UCVbY%3D)
+![Landing Page로 유저 나누기](/img/web/u_1.png)
 
 Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐츠 포스트 그리고 기타 페이지로 나누어서, 각 페이지의 평균 이탈률을 확인했습니다.
 
-![평균 이탈률](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5c9dae96-807f-43ab-9808-1fba5e26cc4c/ScreenShot2018-10-06at3.46.11AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883205&Signature=7uF4RVLoYzkM5q1ms19mecHJu4c%3D)
+![평균 이탈률](/img/web/u_2.png)
 
 컨텐츠 홈으로 유입된 유저들의 이탈률은 58%, 컨텐츠 포스트로 유입된 유저들의 이탈률은 80%가 나왔습니다. 둘 다 평균(55%)보다 더 높은 이탈률을 보이며, 특히 컨텐츠 포스트로 유입된 유저들의 이탈률이 높습니다.
 
-![평균 세션당 체류시간](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7f59a4cf-727e-43f0-abb7-b2aaa017d9e6/ScreenShot2018-10-06at3.42.17AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883214&Signature=K9edzWolqkUB4AVXzWIsIcov2eY%3D)
+![평균 세션당 체류시간](/img/web/u_3.png)
 
 ### 헤비유저 정의하기
 
-![박스플롯1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1511a527-d8e8-485c-8600-d74c9aec7b55/ScreenShot2018-10-06at10.35.29AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883222&Signature=MFdKfdYANFEy1lFK9vtnqLfkQzg%3D)
-![박스플롯2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d8b75ba1-3ae9-4422-93c9-a665fff8cb4a/ScreenShot2018-10-06at10.35.34AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883229&Signature=rataMHOAPO7PIHVnbp0jKyJHwf8%3D)
-![박스플롯3](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e5ceaae6-e671-4e81-be3f-a0324df223f5/ScreenShot2018-10-06at10.38.25AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883237&Signature=CxE%2B3I09gEDCGv4V3L33lkR9rig%3D
-)
+![박스플롯1](/img/web/u_4.png)
+![박스플롯2](/img/web/u_5.png)
+![박스플롯3](/img/web/u_6.png)
 
 각 그룹의 세션당 체류시간을 Boxplot으로 그려보았습니다. Boxplot은 수치적 자료를 보여주는 그래프이며, 흔히 데이터의 분산 및 이상치(outlier)를 탐색하기 위해서 사용됩니다. 그려보니 확연하게 이상치가 나타나는 것을 볼 수 있고, 이를 토대로 평균 유저보다 더 오래 웹사이트에 머무르는 '헤비 유저'를 정의했습니다. 
 
 3개의 Boxplot에서 이상치가 1000초 이상에서 나타나는 공통점을 볼 수 있습니다. 그리하여 저희는 '헤비 유저'를 1000초 이상 웹사이트에 체류하는 유저로 정의했습니다.
 
 ### 유저 유입 분석하기
-![헤비유저](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3a4f674d-b038-47bc-af5d-a3ffad8311b0/ScreenShot2018-10-06at10.44.47AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883244&Signature=Q9TdMUv7G1A96yV9A0rJkBRZ8Gs%3D)
+![헤비유저](/img/web/u_7.png)
 
-![라이트유저 유입](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fc605e08-203d-4d5d-9213-35d720f5395f/ScreenShot2018-10-06at10.43.13AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883251&Signature=ZimhU%2F76l4WhAPBYvZ0Q0aKZZNw%3D)
+![라이트유저 유입](/img/web/u_8.png)
 
 '헤비 유저'와 '라이트 유저(헤비 유저를 제외한 나머지)'로 나누어서, 유입에 차이가 있었는지 분석해보았습니다. 하지만 크게 유의미한 차이는 나타나지 않았습니다. 둘 다 대부분 구글이나 네이버 등의 검색 엔진에서 유입되는 것을 알 수 있었습니다. 
 
@@ -228,8 +227,8 @@ Landing Page (유저가 최초로 보게 된 페이지)를 컨텐츠 홈, 컨텐
 
 가설과 관련된 분석은 유저 행동 분석이 되었고, 이를 Google Analytics에 있는 User Explorer를 이용해서 진행하였습니다.
 
-![User Explorer](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/806cad72-6e8e-45be-8e09-fd6ddb40f7a0/ScreenShot2018-10-06at10.48.49AM.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883258&Signature=BCvKXAxR%2FnYCMof7JFfBbnhgghE%3D)
-![User Explorer2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/895e61ef-5342-4851-aadd-b2c85ef98df8/ScreenShot2018-10-06at10.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538883265&Signature=nY%2FnpcxZjvOqwESw%2BuTzThKnNa8%3D)
+![User Explorer](/img/web/u_9.png){:style="width:20%"}
+![User Explorer2](/img/web/u_10.png)
 
 User Explorer를 이용하면 GA가 track한 유저들의 행동 정보 - 클릭한 페이지, 각 페이지에 머문 시간 - 등을 상세하게 볼 수 있습니다. 2만개의 이상의 유저 정보를 볼 수 있었지만, GA 무료 버전에서는 자동화를 할 수가 없어서 모든 유저 정보를 분석하기에는 힘들었습니다.
 
@@ -246,6 +245,6 @@ User Explorer를 이용하면 GA가 track한 유저들의 행동 정보 - 클릭
 
 데이터가 적었기에 코드를 작성하는 시간은 적었지만 그래프를 어떻게 해석해야 하는지, 데이터를 어떤 형태로 봐야 지금보다 더 유의미한 결과를 얻을 수 있을지 고민하는 시간이 훨씬 길었습니다. 수치적인 해석을 하고 싶어 몇몇 통계 이론도 적용해 보았지만 데이터가 적어서인지 생각과 다른 결과들이 나왔습니다. 
 
-![이것이 데이터 분석이다! 파멸편](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d91aba7c-f67b-40b1-95bd-073a7dec5f92/future.png?AWSAccessKeyId=AKIAJLJXUMP5IHUZAPFQ&Expires=1538840904&Signature=ndNAchpW%2Fj%2Fw7qMbMyXj3E1HBSo%3D)
+![이것이 데이터 분석이다! 파멸편](/img/web/future.png)
 
 적은 데이터의 한계를 인지하고 분석을 진행했기에 분석 결과에 크게 실망하지는 않았습니다. 지금보다 더 많은 경험과 지식을 쌓으면 유의미한 결과를 낼 수 있을 것이란 희망을 품어봅니다.
