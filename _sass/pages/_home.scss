@@ -64,7 +64,7 @@ a {
         margin: 0 1rem 1rem 1rem;
       }
       @include media-query($medium-screen) {
-        max-width: 10rem;
+        max-width: 11rem;
         margin: 0 1rem 1rem 0;
       }
     }
